@@ -1,0 +1,14 @@
+C:\Users\guilh\Documents\dotnet\hello-world-web\bin\Debug\netcoreapp2.1\hello-world-web.deps.json
+C:\Users\guilh\Documents\dotnet\hello-world-web\bin\Debug\netcoreapp2.1\hello-world-web.runtimeconfig.json
+C:\Users\guilh\Documents\dotnet\hello-world-web\bin\Debug\netcoreapp2.1\hello-world-web.runtimeconfig.dev.json
+C:\Users\guilh\Documents\dotnet\hello-world-web\bin\Debug\netcoreapp2.1\hello-world-web.dll
+C:\Users\guilh\Documents\dotnet\hello-world-web\bin\Debug\netcoreapp2.1\hello-world-web.pdb
+C:\Users\guilh\Documents\dotnet\hello-world-web\obj\Debug\netcoreapp2.1\hello-world-web.csprojAssemblyReference.cache
+C:\Users\guilh\Documents\dotnet\hello-world-web\obj\Debug\netcoreapp2.1\hello-world-web.csproj.CoreCompileInputs.cache
+C:\Users\guilh\Documents\dotnet\hello-world-web\obj\Debug\netcoreapp2.1\hello-world-web.RazorAssemblyInfo.cache
+C:\Users\guilh\Documents\dotnet\hello-world-web\obj\Debug\netcoreapp2.1\hello-world-web.RazorAssemblyInfo.cs
+C:\Users\guilh\Documents\dotnet\hello-world-web\obj\Debug\netcoreapp2.1\hello-world-web.AssemblyInfoInputs.cache
+C:\Users\guilh\Documents\dotnet\hello-world-web\obj\Debug\netcoreapp2.1\hello-world-web.AssemblyInfo.cs
+C:\Users\guilh\Documents\dotnet\hello-world-web\obj\Debug\netcoreapp2.1\hello-world-web.RazorTargetAssemblyInfo.cache
+C:\Users\guilh\Documents\dotnet\hello-world-web\obj\Debug\netcoreapp2.1\hello-world-web.dll
+C:\Users\guilh\Documents\dotnet\hello-world-web\obj\Debug\netcoreapp2.1\hello-world-web.pdb
