@@ -1,0 +1,20 @@
+//Partially Updating
+[
+	{
+		"op": "replace",
+		"path": "/name",
+		"value": "Updated name"
+    },
+    {
+		"op": "replace",
+		"path": "/description",
+		"value": "Updated description"
+	}
+]
+
+[
+	{
+		"op": "remove",
+		"path": "/name"
+	}
+]
