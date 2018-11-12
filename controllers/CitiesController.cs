@@ -1,4 +1,5 @@
-using hello_world_web.model;
+//using hello_world_web.model;
+using hello_world_web.models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,5 +26,6 @@ namespace hello_world_web.controllers
 
             return Ok(cityToReturn);
         }
+
     }
 }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace hello_world_web.model
+namespace hello_world_web.models
 {
     public class CityDto
     {

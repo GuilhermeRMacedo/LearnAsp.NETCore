@@ -1,4 +1,5 @@
-using hello_world_web.model;
+//using hello_world_web.model;
+using hello_world_web.models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace hello_world_web.controllers
             return Ok(city.PointsOfInterest);
         }
 
-        [HttpGet("{cityId}/pointofinterest/{id}")]
+        [HttpGet("{cityId}/pointofinterest/{id}", Name="GetPointOfInterest")]
         public IActionResult GetPointOfInterest(int cityId, int id)
         {
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
@@ -36,6 +37,37 @@ namespace hello_world_web.controllers
             }  
 
             return Ok(pointOfInterest);
+        }
+
+        [HttpPost("{cityId}/pointofinterest")]
+        public IActionResult createPointOfInterest (int cityId, [FromBody] PointOfInterestForCreationDto pointsOfInterest)
+        {
+            if(pointsOfInterest == null)
+            {
+                return BadRequest();
+            }
+
+            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+
+            if(city == null)
+            {
+                return NotFound();
+            }
+
+            //demo
+            var maxPointOfIterestId = CitiesDataStore.Current.Cities.SelectMany(
+                c => c.PointsOfInterest).Max(p => p.Id);
+
+            var finalPointOfInterest = new PointsOfInterestDto()
+            {
+                Id = ++maxPointOfIterestId,
+                Name =  pointsOfInterest.Name,
+                Description = pointsOfInterest.Description
+            };
+
+            city.PointsOfInterest.Add(finalPointOfInterest);
+
+            return CreatedAtRoute("GetPointOfInterest", new {cityId = cityId, Id = finalPointOfInterest.Id}, finalPointOfInterest);
         }
     }
 }
