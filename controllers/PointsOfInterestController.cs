@@ -47,6 +47,16 @@ namespace hello_world_web.controllers
                 return BadRequest();
             }
 
+            if(pointsOfInterest.Name == pointsOfInterest.Description)
+            {
+                ModelState.AddModelError("Description", "The provided description should be diferent from the name");
+            }
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
 
             if(city == null)
