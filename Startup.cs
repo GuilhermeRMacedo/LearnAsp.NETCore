@@ -11,6 +11,11 @@ using Microsoft.Extensions.Logging;
 using hello_world_web.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
+using hello_world_web.Entities;
+using Microsoft.EntityFrameworkCore;
+
+using MySql.Data.EntityFrameworkCore;
+using MySql.Data.EntityFrameworkCore.Extensions;
 
 namespace hello_world_web
 {
@@ -42,6 +47,12 @@ namespace hello_world_web
             services.AddTransient<IMailService, LocalMailService>();
             //services.AddTransient<IMailService, CloudMailService>();
 
+            //var connectionStringLocalDbSqlServer = "Server=(localdb)\\mssqllocaldb;Database=curso_asp.netcoreTESTANDO;Trusted_Connection=True;MultipleActiveResultSets=true";
+            var connectionStringLocalDbMysqlServer = "Data Source=Localhost;Database=curso_asp.netcore;User Id=root;Password=root";
+
+
+            //services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(connectionStringLocalDbMysqlServer));
+            services.AddDbContext<CityInfoContext>(o => o.UseMySQL(connectionStringLocalDbMysqlServer));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
