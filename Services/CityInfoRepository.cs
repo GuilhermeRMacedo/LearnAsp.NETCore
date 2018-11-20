@@ -14,6 +14,13 @@ namespace hello_world_web.Services
             _context = context;
         }
 
+        public bool CityExists(int cityId)
+        {
+            //in mysql i had to transform both in strings, 
+            //if not will throw one exception(comparing int16 with string)
+            return _context.Cities.Any(c => c.Id.ToString() == cityId.ToString());
+        }
+
         public IEnumerable<City> GetCities()
         {
             return _context.Cities
