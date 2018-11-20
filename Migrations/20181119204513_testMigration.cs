@@ -2,12 +2,12 @@
 
 namespace helloworldweb.Migrations
 {
-    public partial class CityInfoDbInitialMigration : Migration
+    public partial class testMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "City",
+                name: "cities",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -17,7 +17,7 @@ namespace helloworldweb.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_City", x => x.Id);
+                    table.PrimaryKey("PK_cities", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -27,15 +27,16 @@ namespace helloworldweb.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
+                    Description = table.Column<string>(maxLength: 200, nullable: true),
                     CityId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PointsOfInterest", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PointsOfInterest_City_CityId",
+                        name: "FK_PointsOfInterest_cities_CityId",
                         column: x => x.CityId,
-                        principalTable: "City",
+                        principalTable: "cities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -52,7 +53,7 @@ namespace helloworldweb.Migrations
                 name: "PointsOfInterest");
 
             migrationBuilder.DropTable(
-                name: "City");
+                name: "cities");
         }
     }
 }

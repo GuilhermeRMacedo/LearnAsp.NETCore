@@ -29,7 +29,7 @@ namespace helloworldweb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("City");
+                    b.ToTable("cities");
                 });
 
             modelBuilder.Entity("hello_world_web.Entities.PointOfInterest", b =>

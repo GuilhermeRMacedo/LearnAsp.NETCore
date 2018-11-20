@@ -10,7 +10,7 @@ namespace hello_world_web.Entities
             Database.Migrate();
         }
 
-        public DbSet<City> City { get; set; }
+        public DbSet<City> Cities { get; set; }
         public DbSet<PointOfInterest> PointsOfInterest { get; set; }
 
 

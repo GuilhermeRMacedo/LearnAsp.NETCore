@@ -47,8 +47,8 @@ namespace hello_world_web
             services.AddTransient<IMailService, LocalMailService>();
             //services.AddTransient<IMailService, CloudMailService>();
 
-            //var connectionStringLocalDbSqlServer = "Server=(localdb)\\mssqllocaldb;Database=curso_asp.netcoreTESTANDO;Trusted_Connection=True;MultipleActiveResultSets=true";
-            var connectionStringLocalDbMysqlServer = "Data Source=Localhost;Database=curso_asp.netcore;User Id=root;Password=root";
+            //var connectionStringLocalDbMysqlServer = Startup.Configuration["ConnectionStrings:connectionStringLocalDbSqlServer"];
+            var connectionStringLocalDbMysqlServer = Startup.Configuration["ConnectionStrings:connectionStringLocalDbMysqlServer"];
 
 
             //services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(connectionStringLocalDbMysqlServer));
@@ -56,7 +56,8 @@ namespace hello_world_web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+        ILoggerFactory loggerFactory, CityInfoContext cityInfoContext)
         {
 
             loggerFactory.AddConsole();
@@ -69,6 +70,9 @@ namespace hello_world_web
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            //add oninit
+            cityInfoContext.EnsureSeedDataForContext();
 
             app.UseStatusCodePages();
 

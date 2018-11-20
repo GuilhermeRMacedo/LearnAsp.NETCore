@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace hello_world_web.Entities
 {
+    [Table("cities")]
     public class City
     {
         [Key]

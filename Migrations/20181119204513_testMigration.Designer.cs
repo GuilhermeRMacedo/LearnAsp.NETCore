@@ -8,8 +8,8 @@ using hello_world_web.Entities;
 namespace helloworldweb.Migrations
 {
     [DbContext(typeof(CityInfoContext))]
-    [Migration("20181119184023_CityInfoDbInitialMigration")]
-    partial class CityInfoDbInitialMigration
+    [Migration("20181119204513_testMigration")]
+    partial class testMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,7 +31,7 @@ namespace helloworldweb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("City");
+                    b.ToTable("cities");
                 });
 
             modelBuilder.Entity("hello_world_web.Entities.PointOfInterest", b =>
@@ -40,6 +40,9 @@ namespace helloworldweb.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CityId");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(200);
 
                     b.Property<string>("Name")
                         .IsRequired()
