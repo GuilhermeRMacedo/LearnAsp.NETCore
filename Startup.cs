@@ -53,6 +53,9 @@ namespace hello_world_web
 
             //services.AddDbContext<CityInfoContext>(o => o.UseSqlServer(connectionStringLocalDbMysqlServer));
             services.AddDbContext<CityInfoContext>(o => o.UseMySQL(connectionStringLocalDbMysqlServer));
+
+            //create one per request(scoped)
+            services.AddScoped<ICityInfoRepository, CityInfoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
