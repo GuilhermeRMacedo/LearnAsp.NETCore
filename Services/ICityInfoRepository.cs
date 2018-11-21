@@ -15,5 +15,8 @@ namespace hello_world_web
 
         PointOfInterest GetPointOfInterestForCity(int cityId, int pointOfInterestId);
 
+        void AddPointOfIterestForCity(int cityId, PointOfInterest pointOfInterest);
+
+        bool Save();
     }
 }

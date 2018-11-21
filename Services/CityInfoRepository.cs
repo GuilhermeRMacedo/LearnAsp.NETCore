@@ -14,6 +14,12 @@ namespace hello_world_web.Services
             _context = context;
         }
 
+        public void AddPointOfIterestForCity(int cityId, PointOfInterest pointOfInterest)
+        {
+            var city = GetCity(cityId, false);
+            city.PointsOfInterest.Add(pointOfInterest);
+        }
+
         public bool CityExists(int cityId)
         {
             //in mysql i had to transform both in strings, 
@@ -54,6 +60,11 @@ namespace hello_world_web.Services
             return _context.PointsOfInterest
             .Where(p => p.CityId == cityId)
             .ToList();
+        }
+
+        public bool Save()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

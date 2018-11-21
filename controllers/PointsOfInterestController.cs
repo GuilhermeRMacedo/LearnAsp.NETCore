@@ -104,8 +104,9 @@ namespace hello_world_web.controllers
             // return Ok(pointOfInterest);
         }
 
-        [HttpPost("{cityId}/pointofinterest")]
-        public IActionResult createPointOfInterest (int cityId, [FromBody] PointOfInterestForCreationDto pointsOfInterest)
+        [HttpPost("{cityId}/pointsofinterest")]
+        public IActionResult createPointOfInterest (int cityId, 
+        [FromBody] PointOfInterestForCreationDto pointsOfInterest)
         {
             if(pointsOfInterest == null)
             {
@@ -122,27 +123,45 @@ namespace hello_world_web.controllers
                 return BadRequest(ModelState);
             }
 
-            var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+            // var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
 
-            if(city == null)
+            // if(city == null)
+            // {
+            //     return NotFound();
+            // }
+
+            if(!_cityInfoRepository.CityExists(cityId))
             {
                 return NotFound();
             }
 
-            //demo
-            var maxPointOfIterestId = CitiesDataStore.Current.Cities.SelectMany(
-                c => c.PointsOfInterest).Max(p => p.Id);
+            //AUTO MAPPING
+            //Map a entity from a dto(json object income) 
+            var finalPointOfInterest = Mapper.Map<Entities.PointOfInterest>(pointsOfInterest);
 
-            var finalPointOfInterest = new PointsOfInterestDto()
+            //demo, we dont need it because id is auto generated
+            // var maxPointOfIterestId = CitiesDataStore.Current.Cities.SelectMany(
+            //     c => c.PointsOfInterest).Max(p => p.Id);
+
+            //MANUAL MAP
+            // var finalPointOfInterest = new PointsOfInterestDto()
+            // {
+            //     Id = ++maxPointOfIterestId,
+            //     Name =  pointsOfInterest.Name,
+            //     Description = pointsOfInterest.Description
+            // };
+
+            //city.PointsOfInterest.Add(finalPointOfInterest);
+            _cityInfoRepository.AddPointOfIterestForCity(cityId, finalPointOfInterest);
+            
+            if(!_cityInfoRepository.Save())
             {
-                Id = ++maxPointOfIterestId,
-                Name =  pointsOfInterest.Name,
-                Description = pointsOfInterest.Description
-            };
+                return StatusCode(500, "A Problem happened while handling your request");
+            }
 
-            city.PointsOfInterest.Add(finalPointOfInterest);
+            var createdPointOfInterest = Mapper.Map<models.PointsOfInterestDto>(finalPointOfInterest);
 
-            return CreatedAtRoute("GetPointOfInterest", new {cityId = cityId, Id = finalPointOfInterest.Id}, finalPointOfInterest);
+            return CreatedAtRoute("GetPointOfInterest", new {cityId = cityId, Id = finalPointOfInterest.Id}, createdPointOfInterest);
         }
 
         [HttpPut("{cityId}/pointsofinterest/{id}")]

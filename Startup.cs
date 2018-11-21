@@ -75,7 +75,8 @@ namespace hello_world_web
                 //Entity, DTO. Property from DTO must be the same name of Entity to automapper works
                 cfg.CreateMap<Entities.City, models.CityWithoutPointsOfInterestDto>();
                 cfg.CreateMap<Entities.City, models.CityDto>();
-                //cfg.CreateMap<Entities.PointOfInterest, models.PointsOfInterestDto>();    
+                cfg.CreateMap<Entities.PointOfInterest, models.PointsOfInterestDto>();
+                cfg.CreateMap<models.PointOfInterestForCreationDto, Entities.PointOfInterest>();   
             });
 
             app.UseMvc();
