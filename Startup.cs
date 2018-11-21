@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Logging;
 using hello_world_web.Services;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 using hello_world_web.Entities;
 using Microsoft.EntityFrameworkCore;
-
-using MySql.Data.EntityFrameworkCore;
-using MySql.Data.EntityFrameworkCore.Extensions;
 
 namespace hello_world_web
 {
@@ -74,10 +65,18 @@ namespace hello_world_web
                 app.UseDeveloperExceptionPage();
             }
             
-            //add oninit
+            //fullfill 
             cityInfoContext.EnsureSeedDataForContext();
 
             app.UseStatusCodePages();
+
+            AutoMapper.Mapper.Initialize(cfg => 
+            {
+                //Entity, DTO. Property from DTO must be the same name of Entity to automapper works
+                cfg.CreateMap<Entities.City, models.CityWithoutPointsOfInterestDto>();
+                cfg.CreateMap<Entities.City, models.CityDto>();
+                //cfg.CreateMap<Entities.PointOfInterest, models.PointsOfInterestDto>();    
+            });
 
             app.UseMvc();
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using hello_world_web.Services;
+using AutoMapper;
 
 namespace hello_world_web.controllers
 {
@@ -76,11 +77,15 @@ namespace hello_world_web.controllers
                 return NotFound();
             }
 
-            var pointsOfInterestResult = new PointsOfInterestDto(){
-                Id = pointOfInterest.Id,
-                Name = pointOfInterest.Name,
-                Description = pointOfInterest.Description
-            };
+            //AUTOMAP(automapper)
+            var pointsOfInterestResult = Mapper.Map<PointsOfInterestDto>(pointOfInterest);
+            
+            //MANUAL MAPPIING
+            // var pointsOfInterestResult = new PointsOfInterestDto(){
+            //     Id = pointOfInterest.Id,
+            //     Name = pointOfInterest.Name,
+            //     Description = pointOfInterest.Description
+            // };
 
             return Ok(pointsOfInterestResult);
 
